@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Untitle</title>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css"/>
+        <link rel="stylesheet" type="text/css" href="assets/css/style.css"/>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+        <style>
+            #map{
+                height: 400px;
+                box-shadow: 0 0 15px 3px #555;
+            }
+            html, body {
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+        </style>
+    </head>
+    <body>
+        <main class="py-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-md-12"></div>
+                    <div class="col-lg-6 offset-lg-2 col-ms-12">
+                        <div id="map"></div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <script src="assets/Libs/jQuery/jquery-1.12.4.min.js"></script>
+        <script src="assets/Libs/bootstrap/popper.min.js"></script>
+        <script src="assets/Libs/bootstrap/bootstrap.min.js"></script>
+        <script src="assets/Libs/Vue/vue.js"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCpipiPLPRsiaKm0yg2zyMvNgVZBdXOMqg&callback=initMap"
+        async defer></script>
+        <script src="assets/js/main.js"></script>
+        <script>
+            var map;
+              function initMap() {
+                map = new google.maps.Map(document.getElementById('map'), {
+                  center: {lat: 32.2225, lng: 34.1257},
+                  zoom: 8
+                });
+                  map.addListener('click',function(e){
+                     var latitude = e.latLng.lat();
+                     var longitude = e.latLng().lng();
+                     console.log('latitude : ' + latitude + 'longitude : ' + longitude);
+                      var marker = addMarker(map, {lat : latitude, lng : longitude});
+                  });
+              }
+            function addMarker (map, center){
+                return new google.maps.Marker({
+                    position : center,
+                    map : map
+                });
+            }
+        </script>
+    </body>
+</html>

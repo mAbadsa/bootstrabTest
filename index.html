@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Untitle</title>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css"/>
+        <link rel="stylesheet" type="text/css" href="assets/css/style.css"/>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+        
+    </head>
+    <body>
+        <div id="app">
+            <div v-html="title"></div>
+            <h1>
+                <span v-if="conditional == 0">Test v-if {{conditional}}</span>
+                <span v-else-if="conditional == 1">Test v-if {{conditional}}</span>
+                <span v-else="conditional == 1">Test v-if {{conditional}}</span>
+            </h1>
+            
+            <br><br>
+            <h2 >{{print}}</h2><br><br>
+            <input v-model="print"/><br><br>
+        </div>
+        <div id="app-2">
+            <div v-bind:id="idTesting" v-html="name">Id testing</div>
+            <div>
+                <h1>Width of window : {{width}} px</h1>
+                <h1>Height of window : {{height}} px</h1>
+            </div>
+            <div>
+                <h1>
+                    {{x}} X {{y}} = {{ multi() }}
+                </h1>
+            </div>
+        </div>
+        <div id="app-3" tyle="position: absolute">
+            <button v-on:click="msg('jjfdjfdf', $event)">Click</button>
+            <span id="print">Print here</span>
+            <button v-on:mousewheel="showCor($event)">ShowCor</button>
+            <div v-on:mousemove="showCor($event)" style="position: absolute;min-width: 100%;min-height: 275px"></div>
+            <h1>x : {{x}}</h1>
+            <h1>y : {{y}}</h1>
+            <h1>type : {{type}}</h1>
+            <h1>x1 : {{x1}}</h1>
+            <h1>y1 : {{y1}}</h1>
+        </div>
+        <div class="pb-5" id="app-4">
+            <form v-on:submit="myFunction($event)">
+                <input type="text"/>
+                <button type="submit">OK</button>
+            </form>
+        </div>
+        <div id="app-5">
+            <div v-on:mouseover="rect1($event)" style="width: 200px;height: 200px;background-color: #ff66ff;"><!-- -we can use .self in parent div mouseover.self
+                           -mouseover.capture  تعكس ترتيب النتيجة (عندما نمرر الماوس على العنصر يعطي نتيجة العنصر الأب أولا  
+                           -mouseover.once ينفذ العنصر مرة واحد
+                        -->
+                <div id="div" v-on:mouseover.stop="rect2($event)" v-on:mouseout.stop="outRect2($event)" style="width: 100px;height: 100px;background-color: #66ffff;">
+                </div>
+            </div>
+        </div>
+        
+        <script src="assets/Libs/jQuery/jquery-1.12.4.min.js"></script>
+        <script src="assets/Libs/bootstrap/popper.min.js"></script>
+        <script src="assets/Libs/bootstrap/bootstrap.min.js"></script>
+        <script src="assets/Libs/Vue/vue.js"></script>
+        <script src="assets/js/main.js"></script>
+        <script>
+            new Vue({
+                'el':'#app',
+                'data': {
+                    'title':'<h1>Hello</h1>',
+                    'conditional': 2,
+                    'print': ''
+                }
+            });
+            
+            new Vue({
+               'el': '#app-2',
+                'data':{
+                    'name': '<video class="video" controls poster="assets/img/breakfast.png">Muhammad</video>',
+                    'idTesting':'idDev',
+                    'videoId':'video',
+                    'width':innerWidth,
+                    'height':innerHeight,
+                    'x': 5,
+                    'y': 10,
+               },
+                'methods': {
+                        'multi': function (){
+                        return this.x * this.y;
+                    }
+                }
+            });
+            new Vue({
+                'el': '#app-3',
+                'data': {
+                    'x': 0,
+                    'y': 0,
+                    'type': '',
+                    'x1' : 0,
+                    'y1' : 0,
+                },
+                'methods':{
+                    'msg': function (msg, event){
+                        document.getElementById("print").innerHTML = msg;
+                    },
+                    'showCor': function (event){
+                        this.x = event.clientX;
+                        this.y = event.clientY;
+                        this.type = event.type;
+                        this.x1 = event.x;
+                        this.y1 = event.y;
+//                        console.log(event);
+                    }
+                }
+            });
+            new Vue({
+               'el': '#app-4',
+                'methods': {
+                    'myFunction': function(event){
+                        event.preventDefault();
+                    }
+                }
+            })
+            new Vue({
+               'el': '#app-5',
+                'methods': {
+                    'rect1' : function(){
+                        console.log('event on rect-1')
+                    },
+                    'rect2' : function(){
+//                        event.stopPropagation();
+                        document.getElementById("div").innerHTML = "Mouse is over!";
+                        console.log('event on rect-2');
+                    },
+                    'outRect2': function(){
+                        document.getElementById("div").innerHTML = "Mouse is out!";
+                    }
+                }
+            })
+        </script>
+    </body>
+</html>
