@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Solve the exercise</title>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css"/>
+        <link rel="stylesheet" type="text/css" href="assets/css/style.css"/>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+        <style >
+            #app{
+                margin: 100px 100px;
+                color: 24px;
+            }
+            #app input[type=text]{
+                height: 40px;
+                padding: 5px 15px;
+                border: 1px solid #a5a5a5;
+                border-radius: 3px;
+                box-shadow: 0px 7px 15px -3px #a5a5a5;
+                color: 24px;
+                outline: none;
+                animation: animate 5s linear infinite;
+/*                animation-timing-function: ease-in;*/
+                transition: 0.6s;
+            }
+            #app input[type=text]:focus{
+                height: 40px;
+                padding: 5px 15px;
+                border: 1.3px solid #233095;
+                border-radius: 3px;
+                box-shadow: 0px 9px 18px -3px #2330a5;
+                color: 24px;
+                outline: none;
+                transition: 0.6s;
+            }
+            #app input[type=submit]{
+                width: 200px;
+                height: 45px;
+                border-radius: 5px;
+                border: none;
+                background-color: #30f555;
+                outline: none;
+                box-shadow: 0 8px 15px -5px #a5a5a5;
+                cursor: pointer;
+                animation: animate2 5s linear infinite;
+                transition: 0.6s;
+            }
+            #app input[type=submit]:focus{
+                box-shadow: 0 8px 20px -3px #2330a5;
+                transition: 0.6s;
+            }
+            @keyframes animate {
+                0%
+                {
+                    transform: translateY(8px);
+                }
+                50%
+                {
+                    transform: translateY(-8px);
+                }
+                100%
+                {
+                    transform: translateY(8px);
+                }
+            }
+            @keyframes animate2 {
+                0%
+                {
+                    transform: translateY(8px);
+                    transform: rotateX(0deg) skewY(2deg);
+                }
+                35%
+                {
+                    transform: rotateX(45deg) skewY(3deg);
+                }
+                50%
+                {
+                    transform: translateY(-8px);
+                    transform: rotateX(-45deg) skewY(-2deg);
+                }
+                65%
+                {
+                    transform: rotateX(-30deg) skewY(-3deg);
+                }
+                100%
+                {
+                    transform: translateY(8px);
+                    transform: rotateX(0deg) skewY(2deg);
+                }
+            }
+
+        </style>
+    </head>
+    <body>
+        <div id="app">
+          <!-- EXERCISE 1 -->
+          <input type="text" v-on:keyup="nameKeyup">
+          Output: {{ name }}
+
+          <br><br>
+
+          <!-- EXERCISE 2 -->
+          <input type="text" v-on:keyup.ctrl.enter="name = $event.target.value">
+          Output: {{ name }}
+
+          <br><br>
+
+          <!-- EXERCISE 3 -->
+          <form action="" method="GET" v-on:submit.prevent>
+            <input type="submit" value="Submit">
+          </form>
+        </div>
+        <script src="assets/Libs/jQuery/jquery-1.12.4.min.js"></script>
+        <script src="assets/Libs/bootstrap/popper.min.js"></script>
+        <script src="assets/Libs/bootstrap/bootstrap.min.js"></script>
+        <script src="assets/Libs/Vue/vue.js"></script>
+        <script src="assets/js/main.js"></script>
+        <script>
+           new Vue({
+               el: '#app',
+               data: {
+                   name: ''
+               },
+               methods: {
+                   nameKeyup: function(event) {
+                   this.name = event.target.value;
+                }
+              }
+            });
+        </script>
+    </body>
+</html>

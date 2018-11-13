@@ -17,6 +17,33 @@
                 margin: 0;
                 padding: 0;
             }
+            .gsc-search-button-v2{
+                width: 100px;
+                border-radius: 3px;
+                background-color: #992255;
+                color: #fff;
+                outline: none;
+            }
+            .gsc-search-button-v2:focus{
+                border: none;
+                outline: none;
+            }
+            .gsc-search-button-v2{
+                width: 100px;
+                border-radius: 3px;
+                background-color: #992255;
+                color: #fff;
+                outline: none;
+            }
+            input.gsc-input, .gsc-input-box, .gsc-input-box-hover, .gsc-input-box-focus {
+                padding: 9px 15px;
+                height: 50px;
+                width: 600px;
+                border-color: #90fa27;
+                border-radius: 25px;
+                color: #70dd30;
+                font-size: 25px;
+            }
         </style>
     </head>
     <body>
@@ -30,14 +57,26 @@
                 </div>
             </div>
         </main>
-        
+        <div>
+            <script>
+              (function() {
+                var cx = '013357578683922298254:awz3h1c19ra';
+                var gcse = document.createElement('script');
+                gcse.type = 'text/javascript';
+                gcse.async = true;
+                gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(gcse, s);
+              })();
+            </script>
+            <gcse:search></gcse:search>
+        </div>
         <script src="assets/Libs/jQuery/jquery-1.12.4.min.js"></script>
         <script src="assets/Libs/bootstrap/popper.min.js"></script>
         <script src="assets/Libs/bootstrap/bootstrap.min.js"></script>
         <script src="assets/Libs/Vue/vue.js"></script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCpipiPLPRsiaKm0yg2zyMvNgVZBdXOMqg&callback=initMap"
-        async defer></script>
         <script src="assets/js/main.js"></script>
+<!--
         <script>
             var map;
               function initMap() {
@@ -58,6 +97,33 @@
                     map : map
                 });
             }
+        </script>
+-->
+<!--
+        <script>
+            // Initialize and add the map
+            function initMap() {
+              // The location of Uluru
+              var uluru = {lat: 33.344, lng: 34};
+              // The map, centered at Uluru
+              var map = new google.maps.Map(
+                  document.getElementById('map'), {zoom: 4, center: uluru});
+              // The marker, positioned at Uluru
+              var marker = new google.maps.Marker({position: uluru, map: map});
+            }
+        </script>
+-->
+        <script>  
+          var map;
+          function initMap() {
+            map = new google.maps.Map(document.getElementById('map'), {
+              center: {lat: -34.397, lng: 150.644},
+              zoom: 8
+            });
+          }
+        </script>
+        <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCGVZCtx18UuhX1HM_gyrhh2KVpaiYiWYc&callback=initMap">
         </script>
     </body>
 </html>
